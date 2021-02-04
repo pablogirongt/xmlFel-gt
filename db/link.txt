@@ -1,0 +1,1 @@
+https://felpub.c.sat.gob.gt/verificador-web/publico/vistas/verificacionDte.jsf?tipo=autorizacion&numero=40706AFC-E320-41F3-A54C-944A1F34FA04&emisor=89448618&receptor=7602634&monto=2399.000000

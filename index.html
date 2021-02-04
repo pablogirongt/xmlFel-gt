@@ -1,0 +1,72 @@
+<html lang="es">
+	<head> 
+		<title>ITIC TUTORIALES</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" href="css/estilos.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+	<body>
+		<header>
+			<div class="alert alert-info">
+			<h3>Extraer datos de Factura XML</h3>
+			</div>
+		</header>
+
+<form class="form-inline"  method="post"  name="xmlForm" id="xmlForm" enctype="multipart/form-data" >
+    <div class="col-xs-6 col-xs-offset-4">
+        <div class="form-group">
+            <label for="input_factura">Factura:</label>
+            <input type="file" class="form-control" name="input_factura" id="input_factura" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Extraer</button>
+            <button type="button" onclick="limpiar()" class="btn btn-info">Limpiar</button>
+        </div>
+    </div>
+</form>
+
+<br><br><br>
+
+<div class="container">
+    <pre class="col-xs-12 hidden" id="xml_data"></pre>
+</div>
+
+        
+</body>
+</html>
+
+
+<script type="text/javascript">
+ 
+    $('#xmlForm').submit(function(e){
+
+        e.preventDefault();
+
+        var Form = new FormData($('#xmlForm')[0]);
+        $.ajax({
+
+            url: "xml.php",
+            type: "post",
+            data : Form,
+            processData: false,
+            contentType: false,
+            success: function(data)
+            {
+                $('#xml_data').removeClass('hidden'); 
+                $('#xml_data').append(data); 
+            }
+        });
+    }); 
+
+
+    function limpiar()
+    {
+        $('#input_factura').val(null);
+        $('#xml_data').empty(); 
+        $('#xml_data').addClass('hidden'); 
+    }
+
+</script>
+
